@@ -1,11 +1,21 @@
 import mongoose from 'mongoose';
 
-const todoSchema = new mongoose.Schema({
+const habitsSchema = new mongoose.Schema({
+ 
   description: {
     type: String,
     required: true,
   },
-  isComplete: {
+  isNeutral: {
+    type: Boolean,
+    default: true,
+  },
+  isBad: {
+    type: Boolean,
+    default: false,
+  },
+  
+  isFuture: {
     type: Boolean,
     default: false,
   },
@@ -27,6 +37,6 @@ const todoSchema = new mongoose.Schema({
   updatedAt: Date,
 });
 
-const Todo = mongoose.model('Todo', todoSchema);
+const Habit = mongoose.model('Habit', habitsSchema);
 
-export default Todo;
+export default Habit;

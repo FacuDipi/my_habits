@@ -1,8 +1,8 @@
-import Todo from '../models/Todo.js';
+import Habit from '../models/Habits.js';
 
-export const getTodos = async (req, res) => {
-  const todos = await Todo.find();
-  res.json({ data: todos, message: 'Todos los todos' });
+export const getHabits = async (req, res) => {
+  const Habits = await Habit.find();
+  res.json({ data: Habits, message: 'todos los Habits' });
 };
 
 export const createTodo = async (req, res) => {
