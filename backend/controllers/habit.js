@@ -2,28 +2,28 @@ import Habit from '../models/Habits.js';
 
 export const getHabits = async (req, res) => {
   const Habits = await Habit.find();
-  res.json({ data: Habits, message: 'todos los Habits' });
+  res.json({ data: Habits, message: 'Habits los Habits' });
 };
 
-export const createTodo = async (req, res) => {
+export const createHabit = async (req, res) => {
   const { description } = req.body;
-  //TODO: handler Error
+  // handler Error
 
-  const todo = await Todo.create({ description });
+  const habit = await Habit.create({ description });
 
-  res.json({ data: todo, message: 'Todo creado correctamente' });
+  res.json({ data: habit, message: 'Habit creado correctamente' });
 };
 
-export const updateTodo = async (req, res) => {
+export const updateHabit = async (req, res) => {
   const { id, isComplete } = req.body;
 
-  const todo = await Todo.findByIdAndUpdate(id, { isComplete }, { new: true });
+  const Habit = await Habit.findByIdAndUpdate(id, { isComplete }, { new: true });
 
-  res.json({ data: todo, message: 'Todo actualizado correctamente' });
+  res.json({ data: Habit, message: 'Habit actualizado correctamente' });
 };
 
-export const deleteTodo = async (req, res) => {
+export const deleteHabit = async (req, res) => {
   const { id } = req.params;
-  await Todo.findByIdAndDelete(id);
-  res.json({ data: [], message: 'Todo eliminado correctamente' });
+  await Habit.findByIdAndDelete(id);
+  res.json({ data: [], message: 'Habit eliminado correctamente' });
 };
