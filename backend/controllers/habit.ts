@@ -1,6 +1,6 @@
 import Habit from '../models/Habits.js';
 
-export const getHabits = async (req, res) => {
+export const getHabits = async (req,res) => {
   const Habits = await Habit.find();
   res.json({ data: Habits, message: 'Habits los Habits' });
 };
@@ -17,9 +17,9 @@ export const createHabit = async (req, res) => {
 export const updateHabit = async (req, res) => {
   const { id, isComplete } = req.body;
 
-  const Habit = await Habit.findByIdAndUpdate(id, { isComplete }, { new: true });
+  const habit = await Habit.findByIdAndUpdate(id, { isComplete }, { new: true });
 
-  res.json({ data: Habit, message: 'Habit actualizado correctamente' });
+  res.json({ data: habit, message: 'Habit actualizado correctamente' });
 };
 
 export const deleteHabit = async (req, res) => {
