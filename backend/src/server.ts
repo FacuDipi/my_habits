@@ -1,8 +1,8 @@
-import express from 'express';
-import { connectDB } from './config/db.js';
+import express from "express";
+import { connectDB } from './config/db';
 import dotenv from 'dotenv';
-import { todoRouter } from './routes/todo.js';
-import cors from 'cors';
+import { habitRouter } from './routes/habit';
+import cors from "cors";
 
 const server = express();
 
@@ -17,11 +17,12 @@ connectDB();
 //Cors enable
 server.use(cors());
 
+
 //usamos el middleware para parsear json en el body
 server.use(express.json());
 
 //Routes
-server.use('/api/v1/todo', todoRouter);
+server.use('/api/v1', habitRouter);
 
 server.get('/', (req, res) => {
   res.json({ message: 'Deberias iniciar los request en /api/v1/<entidad>' });
