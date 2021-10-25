@@ -4,7 +4,8 @@ const habitsSchema = new mongoose.Schema({
  
   description: {
     type: String,
-    required: true,
+    required: [true, 'write an habit'],
+
   },
   isNeutral: {
     type: Boolean,
@@ -35,7 +36,8 @@ const habitsSchema = new mongoose.Schema({
     default: false,
   },
   updatedAt: Date,
-});
+},
+{ autoIndex: false });
 
 const Habit = mongoose.model('Habit', habitsSchema);
 

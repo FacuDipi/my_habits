@@ -13,7 +13,6 @@ declare const process : {
   }
 }
 
-
 export const connectDB = async () => {
   const conn = await mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
