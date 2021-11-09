@@ -11,20 +11,20 @@ import {
 import React, { useState } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 
-const FormTodo = () => {
+const FormHabit = () => {
   const queryClient = useQueryClient();
-  const [todo, setTodo] = useState('');
+  const [habit, setHabit] = useState('');
   const toast = useToast();
 
   const mutation = useMutation(
-    async (newTodo) => {
+    async (newHabit) => {
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      return fetch('http://localhost:5000/api/v1/todo', {
+      return fetch('http://localhost:5000/api/v1/habit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(newTodo),
+        body: JSON.stringify(newHabit),
       });
     },
     {
@@ -35,13 +35,13 @@ const FormTodo = () => {
           isClosable: true,
           position: 'top-right',
         });
-        queryClient.invalidateQueries('todo');
-        setTodo('');
+        queryClient.invalidateQueries('habit');
+        setHabit('');
       },
     }
   );
 
-  console.log(todo);
+  console.log(habit);
   return (
     <Box
       w="600px"
@@ -56,12 +56,12 @@ const FormTodo = () => {
       m={5}
     >
       <Flex alignItems="center" justifyContent="center">
-        <FormControl id="todo" w="80%">
-          <FormLabel>Crear Todo</FormLabel>
+        <FormControl id="habit" w="80%">
+          <FormLabel>Crear Habit</FormLabel>
           <Input
             type="text"
-            value={todo}
-            onChange={(e) => setTodo(e.target.value)}
+            value={habit}
+            onChange={(e) => setHabit(e.target.value)}
           />
           <Button
             mt="10"
@@ -72,13 +72,13 @@ const FormTodo = () => {
             }}
             color="white"
             fontWeight="600"
-            onClick={() => mutation.mutate({ description: todo })}
+            onClick={() => mutation.mutate({ description: habit })}
           >
             {mutation.isLoading
               ? 'wait...'
               : mutation.isError
               ? 'Ups! pincho'
-              : 'Crear todo!'}
+              : 'Crear habit!'}
           </Button>
         </FormControl>
       </Flex>
@@ -86,4 +86,4 @@ const FormTodo = () => {
   );
 };
 
-export default FormTodo;
+export default FormHabit;

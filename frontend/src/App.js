@@ -1,8 +1,8 @@
 import { useQuery } from 'react-query';
-
+import { GlobalStyle } from './components/layouts/GlobalStyle';
 import { ChakraProvider, Box, Flex, Divider } from '@chakra-ui/react';
-import Todo from './components/Todo';
-import FormTodo from './components/FormTodo';
+//import Todo from './components/Habit';
+//import FormTodo from './components/FormHabit';
 import Nada from './components/Nada';
 
 function App() {
@@ -13,7 +13,9 @@ function App() {
   console.log(data);
   return (
     <ChakraProvider>
-      <Box bg="gray.100" minH="100vh" py={16}>
+      <GlobalStyle>
+        <Box minH="100vh" >
+          {/* <Box bg="gray.100" minH="100vh" py={16}> */}
         <Flex
           as="main"
           alignItems="center"
@@ -21,20 +23,21 @@ function App() {
           flexDirection="column"
           margin="10 auto"
         >
-          <FormTodo />
+          {/* <FormTodo />
           <Divider orientation="horizontal" />
           {isLoading ? <div>Loding......</div> : null}
           {data?.data.length > 0 ? (
             data.data.map((todo) => <Todo key={todo._id} todo={todo} />)
           ) : (
             <Nada></Nada>
-          )}
+          )} */}
 
           {/* {data?.data?.map((post) => (
           <Post key={post._id} post={post} />
         ))} */}
         </Flex>
       </Box>
+      </GlobalStyle>
     </ChakraProvider>
   );
 }
