@@ -16,7 +16,7 @@ export const createHabit = async (req: Request,res: Response)=> {
 };
 
 export const updateHabit = async (req: Request,res: Response) => {
-  const { id, description } = req.body;
+  const { id} = req.body;
 
   const habit = await Habit.findByIdAndUpdate(id , { new: true });
 
