@@ -7,9 +7,14 @@ import {
   Flex,
   useToast,
 } from '@chakra-ui/react';
-
-import React, { useState } from 'react';
+import { type } from 'os';
+import { stringify, StringifyOptions } from 'querystring';
+import {createHabit} from '../types/variables'
+import  { useState } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
+
+
+
 
 const FormHabit = () => {
   const queryClient = useQueryClient();
@@ -19,7 +24,7 @@ const FormHabit = () => {
   const mutation = useMutation(
     async (newHabit) => {
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      return fetch('http://localhost:5000/api/v1/habit', {
+      return fetch('http://localhost:9000/api/v1/createHabit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -30,7 +35,7 @@ const FormHabit = () => {
     {
       onSuccess: () => {
         toast({
-          title: `To-Do creado!`,
+          title: `Habit creado!`,
           status: 'success',
           isClosable: true,
           position: 'top-right',
@@ -40,7 +45,7 @@ const FormHabit = () => {
       },
     }
   );
-
+ 
   console.log(habit);
   return (
     <Box
@@ -72,7 +77,10 @@ const FormHabit = () => {
             }}
             color="white"
             fontWeight="600"
-            onClick={() => mutation.mutate({ description: habit })}
+            onClick={() => 
+
+                            
+              mutation.mutate( {description : habit })}
           >
             {mutation.isLoading
               ? 'wait...'
