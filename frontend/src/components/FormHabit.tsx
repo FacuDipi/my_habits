@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react';
 import { type } from 'os';
 import { stringify, StringifyOptions } from 'querystring';
-import {createHabit} from '../types/variables'
+import {createHabitVariables} from '../types/variables'
 import  { useState } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 
@@ -21,10 +21,19 @@ const FormHabit = () => {
   const [habit, setHabit] = useState('');
   const toast = useToast();
 
-  const mutation = useMutation(
+  type MyDataModel = {
+    description: string | any;
+  }
+  type Response = {
+    
+   
+    description: string | any;
+  };
+
+  const mutation = useMutation <MyDataModel, string, Response, MyDataModel>(
     async (newHabit) => {
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      return fetch('http://localhost:9000/api/v1/createHabit', {
+      return fetch('http://localhost:9000/api/v1/habit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -45,7 +54,7 @@ const FormHabit = () => {
       },
     }
   );
- 
+    
   console.log(habit);
   return (
     <Box
@@ -68,7 +77,7 @@ const FormHabit = () => {
             value={habit}
             onChange={(e) => setHabit(e.target.value)}
           />
-          <Button
+          <Button Response
             mt="10"
             bg="#7928CA"
             _hover={{
@@ -77,7 +86,7 @@ const FormHabit = () => {
             }}
             color="white"
             fontWeight="600"
-            onClick={() => 
+            onClick={() =>
 
                             
               mutation.mutate( {description : habit })}
